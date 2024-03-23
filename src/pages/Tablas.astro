@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout>
+	<h3 class="text-center">Tablas</h3>
+    <div class="container text-center" id="seleccionaTabla">
+    </div>
+    <div class="container text-center">
+        <h3 id="tabla" class="py-2">Selecciona un boton</h3>
+        <div id="crearTabla">
+        </div>
+    </div>
+</Layout>
+<script>
+    // alert ("Hola esto es javascript"); Esto muestra una ventana
+    // console.log ("Esto es js"); Esto lo muestra por la consola
+    const seleccionaTablaEl=document.querySelector("#seleccionaTabla");
+    const tablaEl=document.querySelector("#tabla");
+    const crearTablaEl=document.querySelector("#crearTabla");
+    // Cargador
+    document.addEventListener("DOMContentLoaded",()=>{
+        seleccionaTabla();
+    });
+    // Funciones
+    function seleccionaTabla(){
+        //Inyectar
+        let valor = "";
+        for (let n=1; n<=10; n++){
+            valor+=`<a href="#" class="btn btn-danger m-2" id="${n}">
+                        Tabla del ${n}
+                    </a>
+                    `
+        }
+        // console.log(valor);
+        seleccionaTablaEl.innerHTML=valor
+    }
+    //Escuchar
+    seleccionaTablaEl.addEventListener("click",(e)=>{
+        tablaEl.innerHTML=`Tabla del ${e.target.id}`;
+        muestraTabla(e.target.id);
+    });
+
+    function muestraTabla(t){
+        let valor="";
+        for (let i=1; i<=10; i++){
+            valor+=`<h3>${t}x${i}=${t*i}</h3>`
+        }
+        crearTablaEl.innerHTML=valor;
+    }
+
+  
+</script>
